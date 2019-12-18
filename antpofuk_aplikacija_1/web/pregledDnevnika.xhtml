@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    
+    <h:head>
+        <title>Pregled dnevnika</title>       
+    </h:head>
+    <h:body>
+        Pregled dnevnika  
+            <h:form>
+                <p:dataTable var="dnevnik" id="dnevnik" value="#{pregledDnevnika.lista}" 
+                          paginator="true"  paginatorTemplate="{CurrentPageReport} {FirstPageLink}
+                           {PreviousPageLink} {PageLinks} {NextPageLink}
+                           {LastPageLink} {RowsPerPageDropdown}"  
+                           currentPageReportTemplate="UKUPNO ZAPISA : {totalRecords}" rows="#{pregledKorisnika.limit}">
+              
+                <p:column >
+                    <f:facet name="header" > ID </f:facet>
+                    <h:outputText value="#{dnevnik.id}"/>
+                </p:column>
+                    <p:column >
+                    <f:facet name="header" > Korisnicko ime </f:facet>
+                    <h:outputText value="#{dnevnik.idKorime}"/>
+                </p:column>
+              
+                <p:column >
+                    <f:facet name="header">Vrijeme </f:facet>
+                    <h:outputText value="#{dnevnik.stored}">
+                        <f:convertDateTime pattern="dd.MM.yyyy. hh:mm:ss" />
+                    </h:outputText>
+                </p:column>    
+                    <p:column  headerText="Id" sortBy="#{dnevnik.vrsta}" filterBy="#{dnevnik.vrsta}" >
+                    <f:facet name="header">Vrsta </f:facet>
+                    <h:outputText value="#{dnevnik.vrsta}" />                        
+                </p:column>
+               <p:column >
+                    <f:facet name="header">Ip adresa </f:facet>
+                    <h:outputText value="#{dnevnik.ip_adresa}" />                        
+                </p:column>
+                </p:dataTable>                           
+        </h:form> 
+    </h:body>
+</html>
+

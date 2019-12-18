@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+ <definitions 
+ xmlns="http://schemas.xmlsoap.org/wsdl/" 
+ xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+ xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+ xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="AIRP2WS" targetNamespace="http://serveri.ws.antpofuk.nwtis.foi.org/" xmlns:tns="http://serveri.ws.antpofuk.nwtis.foi.org/" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:fi="http://java.sun.com/xml/ns/wsit/2006/09/policy/fastinfoset/service" xmlns:tcp="http://java.sun.com/xml/ns/wsit/2006/09/policy/soaptcp/service" xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702" 
+ >
+    <message name="dajSveKorisnike"/>
+    <message name="dajSveKorisnikeResponse"/>
+    <message name="ucitajKonfiguraciju"/>
+    <message name="ucitajKonfiguracijuResponse"/>
+    <message name="dajAvionePoletjeleSAerodroma"/>
+    <message name="dajAvionePoletjeleSAerodromaResponse"/>
+    <message name="dajAvioneUIntervalu"/>
+    <message name="dajAvioneUIntervaluResponse"/>
+    <message name="dajZadnjeNPreuzeteAerodromPodatke"/>
+    <message name="dajZadnjeNPreuzeteAerodromPodatkeResponse"/>
+    <message name="dajZadnjePreuzeteAerodromPodatke"/>
+    <message name="dajZadnjePreuzeteAerodromPodatkeResponse"/>
+    <message name="dajVazeceMeteoPodatke"/>
+    <message name="dajVazeceMeteoPodatkeResponse"/>
+    <message name="dodajKorisnika"/>
+    <message name="dodajKorisnikaResponse"/>
+    <message name="azurirajKorisnika"/>
+    <message name="azurirajKorisnikaResponse"/>
+    <portType name="AIRP2WS">
+        <operation name="dajSveKorisnike">
+            <input message="tns:dajSveKorisnike"/>
+            <output message="tns:dajSveKorisnikeResponse"/>
+        </operation>
+        <operation name="ucitajKonfiguraciju">
+            <input message="tns:ucitajKonfiguraciju"/>
+            <output message="tns:ucitajKonfiguracijuResponse"/>
+        </operation>
+        <operation name="dajAvionePoletjeleSAerodroma">
+            <input message="tns:dajAvionePoletjeleSAerodroma"/>
+            <output message="tns:dajAvionePoletjeleSAerodromaResponse"/>
+        </operation>
+        <operation name="dajAvioneUIntervalu">
+            <input message="tns:dajAvioneUIntervalu"/>
+            <output message="tns:dajAvioneUIntervaluResponse"/>
+        </operation>
+        <operation name="dajZadnjeNPreuzeteAerodromPodatke">
+            <input message="tns:dajZadnjeNPreuzeteAerodromPodatke"/>
+            <output message="tns:dajZadnjeNPreuzeteAerodromPodatkeResponse"/>
+        </operation>
+        <operation name="dajZadnjePreuzeteAerodromPodatke">
+            <input message="tns:dajZadnjePreuzeteAerodromPodatke"/>
+            <output message="tns:dajZadnjePreuzeteAerodromPodatkeResponse"/>
+        </operation>
+        <operation name="dajVazeceMeteoPodatke">
+            <input message="tns:dajVazeceMeteoPodatke"/>
+            <output message="tns:dajVazeceMeteoPodatkeResponse"/>
+        </operation>
+        <operation name="dodajKorisnika">
+            <input message="tns:dodajKorisnika"/>
+            <output message="tns:dodajKorisnikaResponse"/>
+        </operation>
+        <operation name="azurirajKorisnika">
+            <input message="tns:azurirajKorisnika"/>
+            <output message="tns:azurirajKorisnikaResponse"/>
+        </operation>
+    </portType>
+    <binding name="AIRP2WSPortBinding" type="tns:AIRP2WS">
+        <wsp:PolicyReference URI="#AIRP2WSPortBindingPolicy"/>
+        <operation name="dajSveKorisnike">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="ucitajKonfiguraciju">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="dajAvionePoletjeleSAerodroma">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="dajAvioneUIntervalu">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="dajZadnjeNPreuzeteAerodromPodatke">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="dajZadnjePreuzeteAerodromPodatke">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="dajVazeceMeteoPodatke">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="dodajKorisnika">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="azurirajKorisnika">
+            <input/>
+            <output/>
+        </operation>
+    </binding>
+    <service name="AIRP2WS">
+        <port name="AIRP2WSPort" binding="tns:AIRP2WSPortBinding"/>
+    </service>
+    <wsp:Policy wsu:Id="AIRP2WSPortBindingPolicy">
+        <wsp:ExactlyOne>
+            <wsp:All/>
+        </wsp:ExactlyOne>
+    </wsp:Policy>
+    <wsp:Policy wsu:Id="AIRP2WSPortBinding_azurirajKoris_Input_Policy">
+        <wsp:ExactlyOne>
+            <wsp:All>
+                <sp:EncryptedParts>
+                    <sp:Body/>
+                </sp:EncryptedParts>
+                <sp:SignedParts>
+                    <sp:Body/>
+                </sp:SignedParts>
+            </wsp:All>
+        </wsp:ExactlyOne>
+    </wsp:Policy>
+    <wsp:Policy wsu:Id="AIRP2WSPortBinding_azurirajKoris_Output_Policy">
+        <wsp:ExactlyOne>
+            <wsp:All>
+                <sp:EncryptedParts>
+                    <sp:Body/>
+                </sp:EncryptedParts>
+                <sp:SignedParts>
+                    <sp:Body/>
+                </sp:SignedParts>
+            </wsp:All>
+        </wsp:ExactlyOne>
+    </wsp:Policy>
+</definitions>

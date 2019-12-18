@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view locale="#{prijava.jezik}" >
+        <h:head>
+            <title>#{p['prijava.app']}</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        </h:head>
+        <h:body style="background-color: #C8C8C8"> 
+            <h:form>
+                <p:selectOneRadio value="#{prijava.jezik}">
+                    <f:selectItem itemValue="hr" itemLabel="#{p['prijava.jezik.hr']}"/> 
+                    <f:selectItem itemValue="en" itemLabel="#{p['prijava.jezik.en']}"/> 
+                    <f:selectItem itemValue="de" itemLabel="#{p['prijava.jezik.de']}"/> 
+                </p:selectOneRadio>               
+                <p:commandButton value="#{p['prijava.izborJezika']}" 
+                                 action="#{prijava.odaberiJezik}"/>              
+            </h:form>
+            <br/><br/><br/>
+
+            <h:form>
+                <p:dataTable id="aerodromi" var="aerodromi" value="#{pogled_1.listaAerodromi}" class="table" paginator="true" rows="#{prijava.limit}" paginatorTemplate="{CurrentPageReport} {FirstPageLink}
+                             {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  currentPageReportTemplate="UKUPNO KORISNIKA : {totalRecords}"
+                             >                           
+                    <p:column  headerText="Id" sortBy="#{aerodromi.icao}" filterBy="#{aerodromi.icao}" >
+                        <f:facet name="header">Aerodrom - ICAO</f:facet>
+                        <h:outputText value="#{aerodromi.icao}" />                        
+                    </p:column> 
+                </p:dataTable>
+            </h:form> 
+                 
+        </h:body>
+    </f:view>
+</html>
+

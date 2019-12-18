@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view locale="#{prijava.jezik}" >
+        <h:head>
+            <title>#{p['prijava.app']}</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        </h:head>
+        <h:body style="background-color: #C8C8C8"> 
+            <h:form>
+                <p:selectOneRadio value="#{prijava.jezik}">
+                    <f:selectItem itemValue="hr" itemLabel="#{p['prijava.jezik.hr']}"/> 
+                    <f:selectItem itemValue="en" itemLabel="#{p['prijava.jezik.en']}"/> 
+                    <f:selectItem itemValue="de" itemLabel="#{p['prijava.jezik.de']}"/> 
+                </p:selectOneRadio>               
+                <p:commandButton value="#{p['prijava.izborJezika']}" 
+                                 action="#{prijava.odaberiJezik}"/>              
+                <br></br>
+                <h:outputLabel value= "#{p['icao']}" />
+                <p:inputText id="icaoN" value="#{pogled_1.icaoN}"/>
+                <p:commandButton value="#{p['dodajAerodrom']}" 
+                           action="#{pogled_1.dodajAerodrom()}">
+                    <f:ajax render="@form" execute="parkiralista" />
+                </p:commandButton>
+            </h:form>         
+            <h:selectOneListbox id="parkiralista" value="#{pogled_1.odabraniAerodrom}" size="10" class="form-control">
+                <f:selectItems value="#{pogled_1.listaAerodromi}" 
+                               var="park"
+                               itemLabel="#{park.icao} ,   #{park.naziv}"
+                               itemValue="#{park.icao}">
+                </f:selectItems>
+            </h:selectOneListbox>
+            <h:commandButton value="DAJ METEO PODATKE" action="#{pogled_1.dajVazeceMeteo()}">
+                <f:ajax render="tablicaMeteo" execute="parkiralista"/>
+            </h:commandButton>
+            <h:form>
+                <h:dataTable class="table" id="tablicaMeteo" value="#{pogled_1.meteoPodaci}" >
+                    <h:column >
+                        <f:facet name="header" >#{p['meteo.temp']}</f:facet>
+                        <h:outputText value="#{pogled_1.meteoPodaci.temperatureValue} #{pogled_1.meteoPodaci.temperatureUnit}"/>
+                    </h:column>
+                    <h:column >
+                        <f:facet name="header">#{p['meteo.minTemp']}</f:facet>
+                        <h:outputText value="#{pogled_1.meteoPodaci.temperatureMin} #{pogled_1.meteoPodaci.temperatureUnit}" />                        
+                    </h:column>
+                    <h:column >
+                        <f:facet name="header">#{p['meteo.maxTemp']}</f:facet>
+                        <h:outputText value="#{pregledParkiralista.meteoPodaci.temperatureMax} #{pogled_1.meteoPodaci.temperatureUnit}"/>
+                    </h:column>
+                    <h:column >
+                        <f:facet name="header">#{p['meteo.tlak']}</f:facet>
+                        <h:outputText value="#{pogled_1.meteoPodaci.pressureValue} #{pogled_1.meteoPodaci.pressureUnit}"/>
+                    </h:column>  
+                    <h:column >
+                        <f:facet name="header">#{p['meteo.vrijeme']}</f:facet>
+                        <h:outputText value="#{pogled_1.meteoPodaci.weatherValue}"/>
+                    </h:column>
+                </h:dataTable>
+            </h:form>    
+        </h:body>
+    </f:view>
+</html>
+
